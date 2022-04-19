@@ -62,3 +62,8 @@ print(astring.endswith("euwrwq"))
 splitwords = astring.split(" ")
 # prints out what splitwords is. a list should show up
 print(splitwords)
+
+print(astring[:])
+
+print('a' in astring)
+dir(astring)
