@@ -29,7 +29,8 @@ count(fruit,"a")
 # in the previous exercise. Read the documentation of this method at
 # https: // docs.python.org/3.5/library/stdtypes.html  # string-methods and write an
 # invocation that counts the number of times the letter a occurs in “banana”.
-
+amount = fruit.count("a")
+print(amount)
 
 # Exercise 5: Take the following Python code that stores a string: ‘
 # str = ’X-DSPAM-Confidence: 0.8475’
@@ -37,4 +38,8 @@ count(fruit,"a")
 # character and then use the float function to convert the extracted string into a
 # floating point number.
 string = 'X-DSPAM-Confidence: 0.8475'
+aftercolon = string.find(":")
+print(aftercolon)
+number = float(string[19:])
+print(number)
 
