@@ -9,3 +9,13 @@
 fhand = open('mbox.txt')
 print(fhand)
 
+# when a file is not found. it gives out an error
+fhand = open("stiff.txt")
+print(fhand)
+
+# reading files
+fhand = open('mbox_short.txt')
+count = 0
+for line in fhand:
+    count+=1
+print(f'Line count: {count}')
