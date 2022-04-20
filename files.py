@@ -19,3 +19,31 @@ count = 0
 for line in fhand:
     count+=1
 print(f'Line count: {count}')
+
+# the file closes if i do not do another action
+fhand = open('mbox_short.txt')
+imp = fhand.read()
+# prints how many letters there are in the file.
+print(len(imp))
+# the same as string slices
+print(imp[:20])
+
+# searching through a file
+fhand = open('mbox_short.txt')
+count = 0
+for line in fhand:
+    if line.startswith('From:'):
+        print(line)
+        
+# prints the above action but with no spaces inbetween
+for line in fhand:
+    line = line.strip()
+    if line.startswith("From:"):
+        print(line)
+        
+#
+fhand = open('mbox_short.txt')     
+for line in fhand:
+    line.rstrip()
+    if line.find("@uct.ac.za")==-1: continue
+    print(line)
