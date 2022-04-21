@@ -41,9 +41,36 @@ for line in fhand:
     if line.startswith("From:"):
         print(line)
         
-#
+# the action is going to find the address then print it out 
 fhand = open('mbox_short.txt')     
 for line in fhand:
     line.rstrip()
     if line.find("@uct.ac.za")==-1: continue
     print(line)
+
+# making the user choose what file should be openned
+fname = input("Enter the file name: ")
+fhand = open(fname)
+count = 0
+for line in fhand:
+    if line.startswith("Subject:"):
+        count+=1
+print(f'There are {count} with the subject in {fname}')
+
+# using the try catch to have the input that the user puts in is going to work
+count = 0
+try:
+    fname = input("Enter the file name: ")
+    fhand = open(fname)
+except:
+    print("The file cannot open")
+for line in fhand:
+    if line.startswith("Subject:"):
+        count += 1
+print(f'There are {count} with the subject in {fname}')
+
+
+
+
+fhand.close()
+    
