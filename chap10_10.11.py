@@ -65,15 +65,55 @@ def ex2():
     for line in f:
         words = line.split()
         if len(words)<3 or words[0] != 'From':continue
-        if words[5] not in time:
-            time[words[5]] = 1
+        atHour = words[5].find(':')
+        times = words[5][:atHour]
+        if times not in time:
+            time[times] = 1
         else:
-            time[words[5]] += 1
-    print(time)
-    
+            time[times] += 1
+    # print(time)
+    lst =[]
+    for keys,val in list(time.items()):
+        lst.append((keys,val))
+    lst.sort()
+    for key,val in lst:
+        print(key,val)    
 ex2()
+
+
 # Exercise 3: Write a program that reads a file and prints the letters in decreasing
 # order of frequency. Your program should convert all the input to lower case and
 # only count the letters a-z. Your program should not count spaces, digits, punctuation, or anything other than the letters a-z. Find text samples from several different
 # languages and see how letter frequency varies between languages. Compare your
 # results with the tables at wikipedia.org/wiki/Letter_frequencies
+import string
+def ex3():
+    letters = {}
+    count=0
+    fhand =input("Enter file name: ")
+    try:
+        f = open(fhand)
+    except FileNotFoundError:
+        print(f'{fhand} is not found')
+    for line in f:
+        line = line.translate(string.punctuation)
+        line = line.lower()
+        words = line.split()
+        for word in words:
+            for letter in word:
+                if letter not in letters:
+                 letters[letter] = 1
+                 count +=1
+                else:
+                 letters[letter] += 1
+                 count +=1
+    # print(letters)
+    lst = []
+    for keys,val in list(letters.items()):
+        lst.append((keys,val))
+    lst.sort()
+    for key,val in lst:
+        print(f'{key} {val/count:.2f}')
+    
+    
+ex3()
