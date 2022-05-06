@@ -74,7 +74,7 @@ print(ge)
 fname = input('Enter the file name: ')
 try:
     fhand = open(fname)
-except:
+except FileNotFoundError:
     print('File cannot be opened:', fname)
     exit()
 counts = dict()
@@ -109,7 +109,7 @@ import string
 fname = input("Enter file name: ")
 try:
     fhand = open(fname)
-except:
+except FileNotFoundError:
     print("File cannot be opened")
     exit()
     
