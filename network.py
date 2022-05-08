@@ -85,3 +85,68 @@ for line in fhand:
     for word in words:
         counts[word] = counts.get(word, 0) + 1
 print(counts)
+
+
+# we are able to use HTML to parse regular expressions to search and 
+# extract subtrings
+
+
+# <h1>The First Page</h1>
+# <p>
+# If you like, you can switch to the
+# <a href="http://www.dr-chuck.com/page2.htm">
+# Second Page</a>.
+# </p>
+
+# to extract values we would use href="http://.+?" as our expression
+# example:
+import urllib.request,urllib.parse,urllib.error
+import re
+import ssl
+
+# ignore SSl certs
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+
+
+url = input("Enter - ")
+html = urllib.request.urlopen(url).read()
+links = re.findall(b'href="(http://.*?)"',html)
+for link in links:
+    print(link.decode())
+
+# this example we would get all the links that are in that 
+# web page and save them in links using the findall()
+
+
+# we are able to read binary file using the urllib. we use this if we want
+# to extract a non-text file like a image or video.
+
+# example
+import urllib.request,urllib.parse,urllib
+img = urllib.request.urlopen('http://data.pr4e.org/cover.jpg').read()
+f = open('cover.jpg','wb')
+f.write(img)
+f.close()
+# we were able to retrive the image from the web page. it created a new file
+# to save it to. the program is going to read all the
+# data from the network and it would use the memory in our computer. if the
+# size of the file is larger than the amount of memory then the program would crash
+# or it would run slowly
+
+import urllib.request,urllib.error,urllib.parse
+img = urllib.request.urlopen('http://data.pr4e.org/cover.jpg')
+f = open('cover.jpg','wb')
+size = 0
+while True:
+    info = img.read(100000)
+    if len(info) < 1: break
+    size += len(info)
+    f.write(info)
+    
+print(f'{size} characters copied.')
+f.close()
+
+
+
